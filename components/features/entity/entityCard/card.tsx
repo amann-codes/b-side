@@ -1,12 +1,12 @@
 "use client"
 
-import type { Entity } from "@/lib/types"
+import type { SimplifiedEntity } from "@/lib/types"
 import { Album } from "./album"
 import { Artist } from "./artist"
 import { Track } from "./track"
 
 interface EntityCardProps {
-    entity: Entity
+    entity: SimplifiedEntity
     onClick: (id: string) => void
 }
 

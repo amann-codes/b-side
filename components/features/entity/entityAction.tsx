@@ -17,12 +17,13 @@ import { EntityDiscussion } from "@/components/features/post/addEntityDiscussion
 import { AddSampleForm } from "@/components/features/post/addSample"
 import { AddPerformanceForm } from "@/components/features/post/addPerformance"
 import { AddCoverForm } from "@/components/features/post/addCoverInspo"
-import type { Entity } from "@/lib/types"
+import type { SimplifiedEntity } from "@/lib/types"
 import { MessageSquare, Music, ImageIcon, X, CheckCircle2, Mic2 } from "lucide-react"
 import { useState } from "react"
+import Link from "next/link"
 
 interface EntityActionsProps {
-    entity: Entity | null
+    entity: SimplifiedEntity | null
     open: boolean
     onOpenChange: (open: boolean) => void
 }
@@ -46,7 +47,10 @@ export function EntityActions({ entity, open, onOpenChange }: EntityActionsProps
                     <div className="flex items-start justify-between">
                         <div>
                             <DrawerTitle className="text-balance font-black uppercase tracking-tight text-xl text-foreground">
-                                Actions for &lsquo; {entity.name} &rsquo;
+                                Actions for
+                                <Link href={`/album/${entity.id}`}>
+                                    &lsquo;{entity.name}&rsquo;
+                                </Link>
                             </DrawerTitle>
                             <DrawerDescription className="font-mono uppercase text-xs tracking-wide mt-1">
                                 Add content related to this {entity.type}

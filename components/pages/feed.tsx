@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { EntityActions } from "@/components/features/entity/entityAction"
-import type { Entity, Discussion } from "@/lib/types"
+import type { SimplifiedEntity, Discussion } from "@/lib/types"
 import { DiscussionSection } from "@/components/features/feed/discussion/discussionSection"
 import {
     useQuery,
@@ -49,7 +49,7 @@ const discussions: Discussion[] = [
 
 export default function Feed() {
     const [query, setQuery] = useState("")
-    const [selectedEntity, setSelectedEntity] = useState<Entity | null>(null)
+    const [selectedEntity, setSelectedEntity] = useState<SimplifiedEntity | null>(null)
     const [entityDiscussionDrawerOpen, setEntityDrawerOpen] = useState(false)
 
     const { data: results = [], isPending, isError } = useQuery({
@@ -58,7 +58,7 @@ export default function Feed() {
         enabled: query.length > 0,
     })
 
-    const handleEntityClick = (entity: Entity) => {
+    const handleEntityClick = (entity: SimplifiedEntity) => {
         setSelectedEntity(entity)
         setEntityDrawerOpen(true)
     }

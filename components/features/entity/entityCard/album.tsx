@@ -1,11 +1,11 @@
 "use client"
 
 import { Card } from "@/components/ui/card"
-import type { SpotifyAlbumEntity } from "@/lib/types"
+import type { SimplifiedSpotifyAlbumEntity } from "@/lib/types"
 import { Disc } from "lucide-react"
 
 interface AlbumCardProps {
-    entity: SpotifyAlbumEntity
+    entity: SimplifiedSpotifyAlbumEntity
     onClick: (id: string) => void
 }
 

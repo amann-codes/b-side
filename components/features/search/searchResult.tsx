@@ -2,17 +2,17 @@
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { EntityCard } from "@/components/features/entity/entityCard/card"
-import type { Entity } from "@/lib/types"
+import type { SimplifiedEntity } from "@/lib/types"
 
 const categories = ["All", "Tracks", "Artists", "Albums"] as const
 type Category = typeof categories[number]
 
 type SearchResultsProps = {
-    results: Entity[]
+    results: SimplifiedEntity[]
     isPending: boolean
     isError: boolean
     query: string
-    onEntityClick: (entity: Entity) => void
+    onEntityClick: (entity: SimplifiedEntity) => void
 }
 
 export function SearchResults({
@@ -32,7 +32,7 @@ export function SearchResults({
 
     if (results.length === 0) return <EmptyResults />
 
-    const grouped: Record<Category, Entity[]> = {
+    const grouped: Record<Category, SimplifiedEntity[]> = {
         All: results,
         Albums: results.filter(e => e.entityType === "album"),
         Artists: results.filter(e => e.entityType === "artist"),

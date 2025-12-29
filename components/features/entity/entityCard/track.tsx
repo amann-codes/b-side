@@ -1,9 +1,9 @@
 import { Card } from "@/components/ui/card";
-import { SpotifyTrackEntity } from "@/lib/types";
+import { SimplifiedSpotifyTrackEntity } from "@/lib/types";
 import { Music } from "lucide-react";
 
 interface TrackCardProps {
-    entity: SpotifyTrackEntity,
+    entity: SimplifiedSpotifyTrackEntity,
     onClick: (id: string) => void;
     additionalOp?: (id: string) => void
 }
