@@ -21,6 +21,7 @@ import type { SimplifiedEntity } from "@/lib/types"
 import { MessageSquare, Music, ImageIcon, X, CheckCircle2, Mic2 } from "lucide-react"
 import { useState } from "react"
 import Link from "next/link"
+import { Redirect } from "@/lib/link-wrapper"
 
 interface EntityActionsProps {
     entity: SimplifiedEntity | null
@@ -47,10 +48,12 @@ export function EntityActions({ entity, open, onOpenChange }: EntityActionsProps
                     <div className="flex items-start justify-between">
                         <div>
                             <DrawerTitle className="text-balance font-black uppercase tracking-tight text-xl text-foreground">
-                                Actions for
-                                <Link href={`/album/${entity.id}`}>
-                                    &lsquo;{entity.name}&rsquo;
-                                </Link>
+                                Actions for{" "}
+                                <Redirect to={entity.type} id={entity.id}>
+                                    <span className="hover:underline">
+                                        &lsquo;{entity.name}&rsquo;
+                                    </span>
+                                </Redirect>
                             </DrawerTitle>
                             <DrawerDescription className="font-mono uppercase text-xs tracking-wide mt-1">
                                 Add content related to this {entity.type}
