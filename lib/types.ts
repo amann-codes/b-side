@@ -56,10 +56,10 @@ export type AlbumType = "single" | "album" | "compilation"
 
 export type EntityType = "artist" | "track" | "album"
 
-export type Entity =
-  | SpotifyArtistEntity
-  | SpotifyAlbumEntity
-  | SpotifyTrackEntity
+export type SimplifiedEntity =
+  | SimplifiedSpotifyArtistEntity
+  | SimplifiedSpotifyAlbumEntity
+  | SimplifiedSpotifyTrackEntity
 
 export type SpotifyImage = {
   url: string
@@ -67,19 +67,19 @@ export type SpotifyImage = {
   width: number
 }
 
-export type SpotifyTrack = {
+export type SimplifiedSpotifyTrack = {
   id: string
   name: string
   type: "track"
   popularity: number
   album_type: AlbumType
-  album: SpotifyAlbum
-  artists: SpotifyArtist[]
+  album: SimplifiedSpotifyAlbum
+  artists: SimplifiedSpotifyArtist[]
   duration_ms: number
   explicit: boolean
 }
 
-export type SpotifyArtist = {
+export type SimplifiedSpotifyArtist = {
   id: string
   name: string
   type: "artist"
@@ -88,7 +88,7 @@ export type SpotifyArtist = {
   images: SpotifyImage[]
 }
 
-export type SpotifyAlbum = {
+export type SimplifiedSpotifyAlbum = {
   id: string
   name: string
   type: "album"
@@ -99,14 +99,53 @@ export type SpotifyAlbum = {
 
 }
 
-export type SpotifyArtistEntity = SpotifyArtist & {
+export type SimplifiedSpotifyArtistEntity = SimplifiedSpotifyArtist & {
   entityType: "artist"
 }
 
-export type SpotifyAlbumEntity = SpotifyAlbum & {
+export type SimplifiedSpotifyAlbumEntity = SimplifiedSpotifyAlbum & {
   entityType: "album"
 }
 
-export type SpotifyTrackEntity = SpotifyTrack & {
+export type SimplifiedSpotifyTrackEntity = SimplifiedSpotifyTrack & {
   entityType: "track"
+}
+
+export type SpotifyArtist = {
+  followers: {
+    total: number
+  }
+  genres: string[]
+  href: string
+  id: string
+  name:string
+  images: SpotifyImage[]
+  popularity: number
+  type: string
+}
+
+
+export type SpotifyAlbum = {
+  album_type: string
+  total_tracks: number
+  id: string
+  images: SpotifyImage[]
+  name: string
+  release_date: string
+  type: string
+  artists: SimplifiedSpotifyArtist[]
+  tracks: SimplifiedSpotifyTrack[]
+  genres?: string[]
+  popularity?: number
+}
+
+
+export type SpotifyTrack = {
+  album: SpotifyAlbum
+  artists: SimplifiedSpotifyArtist[]
+  duration_ms: number
+  explicit: boolean
+  id: string
+  name: string
+  popularity: number
 }
